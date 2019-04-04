@@ -137,43 +137,13 @@ collect([]).
     send(D, append,button(виход, message(D,destroy)),below),
     send(D, open).
 	
-cons:-consult('C:/Program Files/swipl/lab1/data.pl').
+cons:-consult('C:/Users/User/PROJECTS/Пролог/lab1/data.pl').
 
-save:-tell('C:/Program Files/swipl/lab1/save.pl'),
+save:-tell('C:/Users/User/PROJECTS/Пролог/lab1/save.pl'),
     listing(император),
     listing(супруга_императора),
     listing(наследник_императора),
     told.
-
-
-император(И):-
-    император(И,Государство,_,Год1,Год2,Дни),
-    супруга_императора(ЛИ,И,_,_),
-    наследник_императора(ВИ,И,_,_),
-    срок(И,List),
-
-    string_concat("",И,LBL),
-    string_concat("Государство: ",Государство,LBL_Государство),
-    string_concat("Год рождения: ",Год1,LBL_Год1),
-    string_concat("Год смерти: ",Год2,LBL_Год2),
-    string_concat("Общее количество дней: ",Дни,LBL_Дни),
-    string_concat("Имя супруги императора: ",ЛИ,LBL_ЛИ),
-    string_concat("Имя наследника императора: ",ВИ,LBL_ВИ),
-
-    new(DIALOG, dialog(LBL)),
-    send(DIALOG, append,label(label_Государство, LBL_Государство),below),
-    send(DIALOG, append,label(label_год1, LBL_Год1),below),
-    send(DIALOG, append,label(label_год2, LBL_Год2),below),
-    send(DIALOG, append,label(label_дни, LBL_Дни),below),
-    send(DIALOG, append,label(label_ли, LBL_ЛИ),below),
-    send(DIALOG, append,label(label_ви, LBL_ВИ),below),
-    send(DIALOG, append,label("","Этап правления императора:"),below),
-    send(DIALOG, append(new(LBC,list_browser))),
-    send(LBC,width,10),
-    send(LBC,height,4),
-    send(LBC,member(List)),
-    send(DIALOG, append,button(quit, message(DIALOG,destroy)),below),
-    send(DIALOG,open).
 
 add_el_man:-new(Add, frame('Добавить императора')),
     send(Add,append(new(D, dialog))),
